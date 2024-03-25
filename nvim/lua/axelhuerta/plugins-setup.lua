@@ -33,7 +33,7 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
-	use({ "catppuccin/nvim", as = "catppuccin" }) -- colorscheme
+	use({ "catppuccin/nvim", as = "catppuccin-mocha" }) -- colorscheme
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -108,6 +108,24 @@ return packer.startup(function(use)
 
 	-- terminal
 	use("NvChad/nvterm")
+	use({
+		"akinsho/toggleterm.nvim",
+		tag = "*",
+		config = function()
+			require("toggleterm").setup()
+		end,
+	})
+
+	use({
+		"glepnir/dashboard-nvim",
+		event = "VimEnter",
+		config = function()
+			require("dashboard").setup({
+				-- config
+			})
+		end,
+		requires = { "nvim-tree/nvim-web-devicons" },
+	})
 
 	-- todo comments
 	-- use("folke/todo-comments.nvim")
@@ -123,6 +141,9 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim")
 	use("folke/lsp-colors.nvim")
 	use("folke/trouble.nvim")
+
+	-- better-comments
+	use("Djancyp/better-comments.nvim")
 
 	-- ident line
 	use("lukas-reineke/indent-blankline.nvim")
